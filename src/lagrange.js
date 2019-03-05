@@ -1,74 +1,22 @@
-export default class Lagrange {
+/**
+ *
+ * @param data - [{x: xVal, y: yVal}, {}]
+ * @param x - points value to be obtained
+ * @param n - known data points
+ */
+export function lagrange(data, x, n) {
+    let result = 0;
 
-    /**
-     * At least 2 points are needed to interpolate something
-     * @param arr - array of objects { x: xVal, y: yVal }
-     */
-    constructor(arr) {
-        this.xs = arr.map(p => p.x);
-        this.ys = arr.map(p => p.y);
-        this.ws = [];
-        this._updateWeights();
-    }
+    for (let i = 0; i < n; ++i) {
 
-    /**
-     * @param x
-     * @param y
-     * @returns {number}
-     */
-    addPoint(x, y) {
-        this.xs.push(x);
-        this.ys.push(y);
-        this._updateWeights();
+        let term = data[i].y;
 
-        return this.xs.length - 1;
-    }
-
-
-    /**
-     * @param index (unsigned integer)
-     * @param x
-     * @param y
-     */
-    changePoint(index, x, y) {
-        this.xs[index] = x;
-        this.ys[index] = y;
-        this._updateWeights();
-    }
-
-    /**
-     * @private
-     */
-    _updateWeights() {
-        for (let j = 0; j < this.xs.length; ++j) {
-            let w = 1;
-
-            for (let i = 0; i < this.xs.length; ++i) {
-                i !== j ? w *= this.xs[j] - this.xs[i] : null;
-            }
-
-            this.ws[j] = 1 / w;
-        }
-    }
-
-    /**
-     * Calculate L(x)
-     * @param x
-     * @returns {*}
-     */
-    valueOf(x) {
-        let b = 0;
-        let c = 0;
-
-        for (let i = 0; i < this.xs.length; ++i) {
-            if (x !== this.xs[i]) {
-                b += (this.ws[i] / (x - this.xs[i])) * this.ys[i];
-                c += this.ws[i] / (x - this.xs[i]);
-            } else {
-                return this.ys[i];
+        for (let j = 0; j < n; ++j) {
+            if (j !== i) {
+                term = term * (x - data[j].x) / (data[i].x - data[j].x);
             }
         }
 
-        return b / c;
+        result += term;
     }
 }

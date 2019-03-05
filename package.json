@@ -19,6 +19,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
     "chai": "^4.2.0",
+    "chart.js": "^2.7.3",
     "mocha": "^6.0.2",
     "nodemon": "^1.18.10"
   }

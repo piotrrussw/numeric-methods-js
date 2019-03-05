@@ -1,5 +1,5 @@
 import { expect } from "chai"
-import Lagrange from "../src/lagrange"
+import Lagrange from "../src/lagrnage_oop"
 import data from "../src/dataset";
 
 describe("Lagrange Test", () => {

@@ -1,6 +1,8 @@
-import Lagrange from './lagrange';
 import data from './dataset';
+import { lagrange } from "./lagrange";
 
-const lagrange = new Lagrange(data.points);
 
-console.log(lagrange.valueOf(8));
+const points = data.points;
+const res = lagrange(points, 1.5, 5);
+
+console.log(`Value of f(1.5) = ${res}`);
