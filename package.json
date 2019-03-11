@@ -2,11 +2,11 @@
   "name": "numeric_methods",
   "version": "1.0.0",
   "description": "Implementation of numeric methods in JavaScript",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "start": "nodemon --exec babel-node ./src/index.js",
     "test": "./node_modules/.bin/mocha --require @babel/register",
-    "build": "babel src --out-dir ./dist --source-maps",
+    "build": "webpack -d",
     "serve": "node ./dist/index.js",
     "debug": "node --inspect-brk ./dist/index.js"
   },
@@ -18,9 +18,12 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
+    "bootstrap": "^4.3.1",
     "chai": "^4.2.0",
     "chart.js": "^2.7.3",
     "mocha": "^6.0.2",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
   }
 }

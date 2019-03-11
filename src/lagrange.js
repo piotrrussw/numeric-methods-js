@@ -19,4 +19,6 @@ export function lagrange(data, x, n) {
 
         result += term;
     }
+
+    return result;
 }
