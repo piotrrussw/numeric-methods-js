@@ -6,7 +6,9 @@ I use Javascript and Mocha test framework for development.
 ### Implemented methods
 
 * Lagrange Interpolation
-
+* Dot product
+* Legendre Polynomial (recursive)
+* Least Squares Approximation
 
 ### Setup
 
