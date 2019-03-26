@@ -1,4 +1,25 @@
-const coefficients = [2, -6, 2, -1];
+const data = [
+    {
+        x: -2,
+        y: 5
+    },
+    {
+        x: -1,
+        y: -2
+    },
+    {
+        x: 0,
+        y: 4
+    },
+    {
+        x: 1,
+        y: -7
+    },
+    {
+        x: 2,
+        y: 2
+    }
+];
 
 /**
  *
@@ -17,42 +38,69 @@ function horner(coefficients, n, x) {
 }
 
 /**
+ *
+ * @param data
+ * @param n
+ * @returns {*}
+ */
+function newtonDividedDiff(data, n) {
+    let y = data.map(i => [i.y, 0]);
+    const x = data.map(i => i.x);
+
+    for (let i = 1; i < n; i++) {
+        for (let j = 0; j < n - i; j++) {
+            y[j][i] = (y[j][i - 1] - y[j + 1][i - 1]) / (x[j] - x[i + j]);
+        }
+    }
+
+    return y.map(i => i[1]);
+}
+
+/**
  * Recursive horner implementation
- * @param coefficients
+ * @param data - Array of Objects [{x, y}]
+ * @param coefficients - newton calculated coefficients
  * @param n
  * @param x
  * @returns {*}
  */
-function recursiveHorner(coefficients, n, x) {
-    if(n === 0) {
-        return coefficients[0];
+function recursiveHorner(data, coefficients, n, x) {
+    let res = data[0];
+
+    for (let i = 1; i < n; ++i) {
+        res = res * (x - coefficients[i]) + Number(data[i]);
     }
 
-    return x * recursiveHorner(coefficients, n - 1, x) + Number(coefficients[n]);
+    return res;
 }
 
 /**
  *
- * @param coefficients - {Array}
- * @param n - {Number}
- * @param x - {Number}
- * @returns {Array}
+ * @param coefficients
+ * @param n
+ * @param x
  */
-function newtonCoefficientCalculation(coefficients, n, x) {
-    const newtonPolynomial = coefficients.map(i => horner(coefficients, i, n));
-    let ret = [1, newtonPolynomial[1]];
+function newtonToNatural(coefficients, n, x) {
+    let y = coefficients.map(i => [i, 0]);
 
-    for (let i = 2; i < n; ++i) {
-        const tmp = 2 * newtonCoefficientCalculation(newtonPolynomial, n - 1, x)
-            - newtonCoefficientCalculation(coefficients, n - 2, x);
-
-        ret.push(tmp);
+    for (let i = 1; i < n; i++) {
+        for (let j = n - 1; j >= i; j--) {
+            y[j][i] = y[j][i - 1] - y[j - 1][i - 1] * x;
+        }
     }
 
-    return ret;
+    return y.map(i => i[1]);
 }
 
-console.log(horner(coefficients, 3, 3));
-console.log(recursiveHorner(coefficients, 3, 3));
-console.log(coefficients);
-console.log(newtonCoefficientCalculation(coefficients, 4, 3));
+
+const newtonCoefficients = newtonDividedDiff(data, 5);
+const x = data.map(i => i.x);
+const y = data.map(i => i.y);
+
+console.log('x: ' + data.map(i => i.x).join(', '));
+console.log('y: ' + data.map(i => i.y).join(', '));
+
+console.log('horner: ' + horner(x, 4, 0));
+console.log('newtonCoefficients: ' + newtonCoefficients.join(', '));
+console.log('horner generalized: ' + recursiveHorner(x, newtonCoefficients, 5, 0));
+console.log(newtonToNatural(newtonCoefficients, 5, 0));
