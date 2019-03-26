@@ -1,33 +1,10 @@
-const data = [
-    {
-        x: -2,
-        y: 5
-    },
-    {
-        x: -1,
-        y: -2
-    },
-    {
-        x: 0,
-        y: 4
-    },
-    {
-        x: 1,
-        y: -7
-    },
-    {
-        x: 2,
-        y: 2
-    }
-];
-
 /**
  *
  * @param coefficients
  * @param n
  * @param x
  */
-function horner(coefficients, n, x) {
+export function horner(coefficients, n, x) {
     let res = coefficients[0];
 
     for (let i = 1; i <= n; ++i) {
@@ -43,7 +20,7 @@ function horner(coefficients, n, x) {
  * @param n
  * @returns {*}
  */
-function newtonDividedDiff(data, n) {
+export function newtonDividedDiff(data, n) {
     let y = data.map(i => [i.y, 0]);
     const x = data.map(i => i.x);
 
@@ -64,7 +41,7 @@ function newtonDividedDiff(data, n) {
  * @param x
  * @returns {*}
  */
-function recursiveHorner(data, coefficients, n, x) {
+export function generalizedHorner( data, coefficients, n, x) {
     let res = data[0];
 
     for (let i = 1; i < n; ++i) {
@@ -80,7 +57,7 @@ function recursiveHorner(data, coefficients, n, x) {
  * @param n
  * @param x
  */
-function newtonToNatural(coefficients, n, x) {
+export function newtonToNatural(coefficients, n, x) {
     let y = coefficients.map(i => [i, 0]);
 
     for (let i = 1; i < n; i++) {
@@ -91,16 +68,3 @@ function newtonToNatural(coefficients, n, x) {
 
     return y.map(i => i[1]);
 }
-
-
-const newtonCoefficients = newtonDividedDiff(data, 5);
-const x = data.map(i => i.x);
-const y = data.map(i => i.y);
-
-console.log('x: ' + data.map(i => i.x).join(', '));
-console.log('y: ' + data.map(i => i.y).join(', '));
-
-console.log('horner: ' + horner(x, 4, 0));
-console.log('newtonCoefficients: ' + newtonCoefficients.join(', '));
-console.log('horner generalized: ' + recursiveHorner(x, newtonCoefficients, 5, 0));
-console.log(newtonToNatural(newtonCoefficients, 5, 0));

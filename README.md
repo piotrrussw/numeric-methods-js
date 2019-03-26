@@ -9,6 +9,9 @@ I use Javascript and Mocha test framework for development.
 * Dot product
 * Legendre Polynomial (recursive)
 * Least Squares Approximation
+* Newton Divided Difference
+* Horner (for natural & newton coefficients)
+* Newton coefficients to natural
 
 ### Setup
 
