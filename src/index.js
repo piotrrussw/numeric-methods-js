@@ -1,5 +1,5 @@
-import data from './dataset';
-import approxData from './approxData';
+import data from './datasets/dataset';
+import approxData from './datasets/approxData';
 import { lagrange } from "./lagrange";
 import { approximation } from "./approximation";
 import Chart from '../node_modules/chart.js/dist/Chart';

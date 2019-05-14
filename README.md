@@ -12,12 +12,16 @@ I use Javascript and Mocha test framework for development.
 * Newton Divided Difference
 * Horner (for natural & newton coefficients)
 * Newton coefficients to natural
+* Newton Cottes & Newton Cottes Simpson
+* Gauss Quadrature
+* Euler methods
+* Huen method
+* Runge-Kutty
 
 ### Setup
 
-You can simply view this project in your browser by cloning
+You can simply view interpolation for this project in your browser by cloning
 the repo and:
-
 
 `npm install`
 
