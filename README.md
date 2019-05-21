@@ -18,6 +18,7 @@ I use Javascript and Mocha test framework for development.
 * Huen method
 * Runge-Kutty
 * Gauss Elimination
+* Non-linear equations
 
 ### Setup
 
