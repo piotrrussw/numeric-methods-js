@@ -17,6 +17,7 @@ I use Javascript and Mocha test framework for development.
 * Euler methods
 * Huen method
 * Runge-Kutty
+* Gauss Elimination
 
 ### Setup
 
