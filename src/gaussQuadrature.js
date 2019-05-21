@@ -46,7 +46,11 @@ const coefficients = [0.4, 5, -6, -2, 55];
 const A = [1, 1, 0.555555, 0.888888, 0.555555, 0.347855, 0.652145, 0.652145, 0.347855, 0.236927, 0.478629, 0.568889, 0.478629, 0.236927];
 const X = [-0.577350, 0.577350, -0.774597, 0, 0.774597, -0.861136, -0.339981, 0.339981, 0.861136, -0.906180, -0.538469, 0, 0.538469, 0.906180];
 
+// const start = process.hrtime();
 console.log(gaussQuadrature(coefficients, A, X, 0, 1));
 console.log(gaussQuadrature(coefficients, A, X, 2, 2));
 console.log(gaussQuadrature(coefficients, A, X, 5, 3));
 console.log(gaussQuadrature(coefficients, A, X, 9, 4));
+// const end = process.hrtime();
+
+// console.log(end[1] - start[1]);
